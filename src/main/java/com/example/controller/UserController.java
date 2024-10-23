@@ -13,60 +13,45 @@ import java.util.UUID;
 @RequestMapping("/")
 public class UserController {
 
+    private static final String LOGIN_VIEW = "login";
+    private static final String REGISTER_VIEW = "register";
+    private static final String INDEX_VIEW = "index";
+    private static final String REDIRECT_LOGIN = "redirect:/login";
+    private static final String REDIRECT_INDEX = "redirect:/index";
+    private static final String ERROR_PARAM = "?error";
+
     @Autowired
     private UserService userService;
 
     @GetMapping
-    public String registerFront() {
-        return "register";
+    public String showRegisterForm() {
+        return REGISTER_VIEW;
     }
 
     @GetMapping("/login")
-    public String login() {
-        return "login";
+    public String showLoginForm() {
+        return LOGIN_VIEW;
     }
 
     @GetMapping("/index")
-    public String home() {
-        return "index";
+    public String showHomePage() {
+        return INDEX_VIEW;
     }
 
-    @PostMapping("register")
+    @PostMapping("/register")
     public String registerUser(@ModelAttribute User user) {
         userService.create(user);
-        return "redirect:login";
+        return REDIRECT_LOGIN;
     }
 
     @PostMapping("/login")
     public String loginUser(@RequestParam String email, @RequestParam String password) {
         User user = userService.findByEmail(email);
         if (user != null && userService.checkPassword(user, password)) {
-            return "redirect:index";
+            return REDIRECT_INDEX;
         } else {
-            return "redirect:/login?error";
+            return REDIRECT_LOGIN + ERROR_PARAM;
         }
-    }
-
-    @GetMapping("/{id}")
-    public String getUserById(@PathVariable UUID id, Model model) {
-        User user = userService.findById(id);
-        model.addAttribute("user", user);
-        return "userDetail";
-    }
-
-
-    @GetMapping("/edit/{id}")
-    public String editUserForm(@PathVariable UUID id, Model model) {
-        User user = userService.findById(id);
-        model.addAttribute("user", user);
-        return "user-form";
-    }
-
-    @PostMapping("/update/{id}")
-    public String updateUser(@PathVariable UUID id, @ModelAttribute User user) {
-        user.setId(id);
-        userService.update(user);
-        return "redirect:/users";
     }
 
     @GetMapping("/delete/{id}")
