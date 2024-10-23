@@ -1,8 +1,5 @@
 package com.example.entity;
 
-import org.springframework.data.annotation.Id;
-
-
 import javax.persistence.*;
 import java.util.UUID;
 
@@ -14,13 +11,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 
-    // Getters and Setters
+    // Getters et Setters
     public UUID getId() {
         return id;
     }
