@@ -1,5 +1,8 @@
 package com.example.entity;
 
+import org.springframework.data.annotation.Id;
+
+
 import javax.persistence.*;
 import java.util.UUID;
 
