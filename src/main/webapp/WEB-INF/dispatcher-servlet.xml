@@ -14,6 +14,10 @@
     <!-- Scanne les contrôleurs (@Controller) -->
     <context:component-scan base-package="com.example.controller"/>
 
+
+
+    <mvc:resources mapping="/**" location="/resources/" />
+
     <!-- Configuration du gestionnaire de vue pour les JSP -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>

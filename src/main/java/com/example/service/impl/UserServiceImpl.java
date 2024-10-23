@@ -3,40 +3,50 @@ package com.example.service.impl;
 import com.example.entity.User;
 import com.example.repository.UserRepository;
 import com.example.service.inter.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-        @Autowired
-        private UserRepository userRepository;
+    private UserRepository userRepository;
 
-        @Override
-        public User create(User user) {
-            return userRepository.save(user);
-        }
-
-        @Override
-        public User update(User user) {
-            return userRepository.save(user);
-        }
-
-        @Override
-        public void delete(UUID id) {
-            userRepository.deleteById(id);
-        }
-
-        @Override
-        public User findById(UUID id) {
-            return userRepository.findById(id).orElse(null);
-        }
-
-        @Override
-        public List<User> findAll() {
-            return userRepository.findAll();
-        }
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
+
+    @Override
+    public void create(User user) {
+        String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+        user.setPassword(hashedPassword);
+        userRepository.save(user);
+    }
+
+    @Override
+    public User findById(UUID id) {
+        return userRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public void update(User user) {
+        userRepository.save(user);
+    }
+
+    @Override
+    public void delete(UUID id) {
+        userRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean checkPassword(User user, String rawPassword) {
+        // Vérifie le mot de passe
+        return BCrypt.checkpw(rawPassword, user.getPassword());
+    }
+}

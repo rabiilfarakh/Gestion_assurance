@@ -29,6 +29,9 @@
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.format_sql">true</prop>
+
             </props>
         </property>
     </bean>
@@ -42,6 +45,7 @@
 
     <!-- Scanne automatiquement les composants Spring (comme @Repository, @Service, etc.) -->
     <context:component-scan base-package="com.example"/>
+
 
     <!-- Scanne les repositories Spring Data JPA -->
     <jpa:repositories base-package="com.example.repository"/>

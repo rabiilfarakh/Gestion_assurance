@@ -2,13 +2,13 @@ package com.example.service.inter;
 
 import com.example.entity.User;
 
-import java.util.List;
 import java.util.UUID;
 
 public interface UserService {
-    User create(User user);
-    User update(User user);
-    void delete(UUID id);
+    void create(User user);
     User findById(UUID id);
-    List<User> findAll();
+    User findByEmail(String email);
+    void update(User user);
+    void delete(UUID id);
+    boolean checkPassword(User user, String rawPassword);
 }
