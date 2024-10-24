@@ -4,10 +4,9 @@ import com.example.entity.User;
 import com.example.service.inter.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import javax.servlet.http.HttpSession;
 
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/")
@@ -45,18 +44,21 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String loginUser(@RequestParam String email, @RequestParam String password) {
+    public String loginUser(@RequestParam String email, @RequestParam String password, HttpSession session) {
         User user = userService.findByEmail(email);
         if (user != null && userService.checkPassword(user, password)) {
+            session.setAttribute("user", user);
             return REDIRECT_INDEX;
         } else {
             return REDIRECT_LOGIN + ERROR_PARAM;
         }
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteUser(@PathVariable UUID id) {
-        userService.delete(id);
-        return "redirect:/users";
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return REDIRECT_LOGIN;
     }
+
+
 }
