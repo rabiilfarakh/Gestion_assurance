@@ -1,0 +1,22 @@
+body {
+    background-color: #ffffff; /* Fond blanc */
+}
+
+h2 {
+    color: #343a40;
+}
+
+.table {
+    border: 2px solid #000; /* Cadre noir */
+}
+
+.table th,
+.table td {
+    vertical-align: middle; /* Aligne le contenu au milieu */
+}
+
+/* Ajustement pour les boutons d'action */
+.action-buttons {
+    display: flex;
+    gap: 10px; /* Espacement entre les boutons */
+}

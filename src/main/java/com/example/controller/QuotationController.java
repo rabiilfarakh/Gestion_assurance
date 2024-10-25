@@ -21,6 +21,13 @@ public class QuotationController {
     @Autowired
     private QuotationService quotationService;
 
+    @GetMapping("/admin")
+    public String listQuotations(Model model) {
+        List<Quotation> quotations = quotationService.findAll();
+        model.addAttribute("quotations", quotations);
+        return "admin";
+    }
+
     @GetMapping
     public String showQuotationForm(@RequestParam String insuranceType, Model model) {
         List<Quotation> quotations = quotationService.findAll();
