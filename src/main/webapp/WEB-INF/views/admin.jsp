@@ -16,7 +16,7 @@
         <table class="table table-bordered table-light">
             <thead class="thead-dark">
                 <tr>
-                    <th>#</th> <!-- Changer ID en # -->
+                    <th>#</th>
                     <th>Âge</th>
                     <th>Valeur du Bien</th>
                     <th>Historique des Sinistres</th>
@@ -28,7 +28,7 @@
             <tbody>
                 <c:forEach var="quotation" items="${quotations}" varStatus="status">
                     <tr>
-                        <td>${status.index + 1}</td> <!-- Affiche le numéro de ligne -->
+                        <td>${status.index + 1}</td>
                         <td>${quotation.age}</td>
                         <td>${quotation.valueOfGood}</td>
                         <td>${quotation.historyOfClaims}</td>
