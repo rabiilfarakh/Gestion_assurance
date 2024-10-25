@@ -1,6 +1,8 @@
 package com.example.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -25,6 +27,10 @@ public class User {
 
     @Column(name = "address")
     private String address;
+
+    @OneToMany(mappedBy = "user")
+    private List<Quotation> quotations = new ArrayList<>();
+
 
     // Getters et Setters
     public UUID getId() {
@@ -73,5 +79,13 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public List<Quotation> getQuotations() {
+        return quotations;
+    }
+
+    public void setQuotations(List<Quotation> quotations) {
+        this.quotations = quotations;
     }
 }

@@ -1,4 +1,4 @@
 package com.example.entity;
 
-public class Health_Insurances {
+public class Health_Insurance {
 }

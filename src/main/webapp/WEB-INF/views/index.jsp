@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -6,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assurance - Page d'accueil</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
@@ -34,64 +35,69 @@
         </div>
     </section>
 
-    <!-- Start Teste -->
+    <!-- Hero Banner Section -->
     <section>
-    <div class="o-herobanner full-width p-relative">
-        <div class="o-herobanner__img">
-            <picture>
-                <img src="/content/dam/axa-fr-convergence/transverse/HP/Hero%20banner/Header-les-aidants.jpg" class="a-image--responsive a-image--square a-image--cover" alt="">
-            </picture>
-        </div>
-        <div class="o-herobanner__contentWrapper">
-            <div class="container-fluid">
-                <div class="o-herobanner__content p-relative">
-                    <h2 class="text-white m-h1 m-h1--encoding">Ensemble, nous inventons l'assurance qui vous ressemble</h2>
+        <div class="o-herobanner full-width p-relative">
+            <div class="o-herobanner__img">
+                <picture>
+                    <img src="/content/dam/axa-fr-convergence/transverse/HP/Hero%20banner/Header-les-aidants.jpg" class="a-image--responsive a-image--square a-image--cover" alt="">
+                </picture>
+            </div>
+            <div class="o-herobanner__contentWrapper">
+                <div class="container-fluid">
+                    <div class="o-herobanner__content p-relative">
+                        <h2 class="text-white m-h1 m-h1--encoding">Ensemble, nous inventons l'assurance qui vous ressemble</h2>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="o-herobanner__tiles d-flex flex-wrap justify-content-center">
-                        <!-- Auto -->
-                        <div class="m-tile p-06-t p-06-b d-flex flex-column align-items-center">
-                            <div class="m-tile__img m-02-b">
-                                <i class="fas fa-car fa-3x"></i> <!-- Icône auto -->
-                            </div>
-                            <p class="m-tile__surtitle">DEVIS</p>
-                            <p class="m-tile__title">Auto</p>
-                            <a href="/assurance-auto.html" title="1 sur 4, Devis auto " class="u-link"></a>
-                        </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="o-herobanner__tiles d-flex flex-wrap justify-content-center">
+                            <!-- Auto -->
+                            <form action="${pageContext.request.contextPath}/quotations" method="get">
+                                <input type="hidden" name="insuranceType" value="Auto">
+                                <div class="m-tile p-06-t p-06-b d-flex flex-column align-items-center">
+                                    <div class="m-tile__img m-02-b">
+                                        <i class="fas fa-car fa-3x"></i>
+                                    </div>
+                                    <p class="m-tile__surtitle">DEVIS</p>
+                                    <p class="m-tile__title"><button type="submit" class="btn btn-link">Auto</button></p>
+                                </div>
+                            </form>
 
-                        <!-- Habitation -->
-                        <div class="m-tile p-06-t p-06-b d-flex flex-column align-items-center">
-                            <div class="m-tile__img m-02-b">
-                                <i class="fas fa-home fa-3x"></i> <!-- Icône habitation -->
-                            </div>
-                            <p class="m-tile__surtitle">DEVIS</p>
-                            <p class="m-tile__title">Habitation</p>
-                            <a href="/assurance-habitation.html" title="2 sur 4, Devis habitation " class="u-link"></a>
-                        </div>
+                            <!-- Habitation -->
+                            <form action="${pageContext.request.contextPath}/quotations" method="get">
+                                <input type="hidden" name="insuranceType" value="House">
+                                <div class="m-tile p-06-t p-06-b d-flex flex-column align-items-center">
+                                    <div class="m-tile__img m-02-b">
+                                        <i class="fas fa-home fa-3x"></i>
+                                    </div>
+                                    <p class="m-tile__surtitle">DEVIS</p>
+                                    <p class="m-tile__title"><button type="submit" class="btn btn-link">Habitation</button></p>
+                                </div>
+                            </form>
 
-                        <!-- Santé -->
-                        <div class="m-tile p-06-t p-06-b d-flex flex-column align-items-center">
-                            <div class="m-tile__img m-02-b">
-                                <i class="fas fa-heartbeat fa-3x"></i> <!-- Icône santé -->
-                            </div>
-                            <p class="m-tile__surtitle">DEVIS</p>
-                            <p class="m-tile__title">Santé</p>
-                            <a href="/complementaire-sante.html" title="3 sur 4, Devis santé " class="u-link"></a>
+                            <!-- Santé -->
+                            <form action="${pageContext.request.contextPath}/quotations" method="get">
+                                <input type="hidden" name="insuranceType" value="Health">
+                                <div class="m-tile p-06-t p-06-b d-flex flex-column align-items-center">
+                                    <div class="m-tile__img m-02-b">
+                                        <i class="fas fa-heartbeat fa-3x"></i>
+                                    </div>
+                                    <p class="m-tile__surtitle">DEVIS</p>
+                                    <p class="m-tile__title"><button type="submit" class="btn btn-link">Santé</button></p>
+                                </div>
+                            </form>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </section>
-    <!-- End Teste -->
+    <!-- End Hero Banner -->
 
-    <!-- New Section for Attractive Design -->
+    <!-- Additional Info Section -->
     <section class="additional-info">
         <h2>Pourquoi Choisir Nos Services ?</h2>
         <div class="info-cards">
